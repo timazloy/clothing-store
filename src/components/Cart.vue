@@ -1,10 +1,15 @@
 <template>
-  <h1>Cart</h1>
+  <CartItem/>
 </template>
 
 <script>
+import CartItem from './Cart-item'
+
 export default {
-  name: "vCart"
+  name: "vCart",
+  components: {
+    CartItem
+  }
 }
 </script>
 

@@ -2,8 +2,8 @@
   <div class="catalog-item">
     <p>{{product_data.name}}</p>
     <p>{{product_data.price}} р.</p>
-    <img  :src="require('/src/assets/images/' + product_data.image) " alt="image">
-    <button>Add to Cart</button>
+    <img :src="require('/src/assets/images/' + product_data.image) " alt="image">
+    <button @click="sendDataToParent">Add to Cart</button>
   </div>
 </template>
 
@@ -16,6 +16,15 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  data() {
+    return {}
+  },
+  computed: {},
+  methods: {
+    sendDataToParent() {
+      this.$emit('sendDataToParent',  this.product_data.article)
     }
   }
 }
