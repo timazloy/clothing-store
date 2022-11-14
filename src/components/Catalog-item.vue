@@ -3,7 +3,7 @@
     <p>{{product_data.name}}</p>
     <p>{{product_data.price}} р.</p>
     <img :src="require('/src/assets/images/' + product_data.image) " alt="image">
-    <button @click="sendDataToParent">Add to Cart</button>
+    <button @click="addToCart">Add to Cart</button>
   </div>
 </template>
 
@@ -23,8 +23,8 @@ export default {
   },
   computed: {},
   methods: {
-    sendDataToParent() {
-      this.$emit('sendDataToParent',  this.product_data.article)
+    addToCart() {
+      this.$emit('addToCart' ,this.product_data)
     }
   }
 }

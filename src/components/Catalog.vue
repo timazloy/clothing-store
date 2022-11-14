@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="Catalog-items">
     <h1>Catalog</h1>
     <CatalogItem
       v-for="product in PRODUCTS"
       :key="product.article"
       :product_data="product"
-      @sendDataToParent="showChildArticleInConsole"
+      @addToCart="addToCart"
     />
   </div>
 
@@ -32,10 +32,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'GET_PRODUCTS_FROM_API'
+      'GET_PRODUCTS_FROM_API',
+      'ADD_TO_CART'
     ]),
-    showChildArticleInConsole(data) {
-      console.log(data)
+    addToCart(data) {
+      this.ADD_TO_CART(data)
     }
   },
   mounted() {
@@ -45,5 +46,10 @@ export default {
 </script>
 
 <style lang="scss">
+.Catalog-items {
+  display: flex;
+  gap: 20px;
+}
+
 
 </style>
