@@ -11,7 +11,12 @@
           :key="item.article"
           :cart_item_data="item"
           @deleteFromCart="deleteFromCart(index)"
+          @increment="increment(index)"
+          @decrement="decrement(index)"
       />
+      <div v-if="cart_data.length" class="cart__total">
+        Total: {{cartTotalCost}} Rub
+      </div>
     </div>
 
   </div>
@@ -34,9 +39,33 @@ export default {
       }
     }
   },
+  computed: {
+    cartTotalCost() {
+      let result = [];
+
+      if (this.cart_data.length) {
+        for (let item of this.cart_data) {
+          result.push(item.price * item.quantity)
+        }
+
+        result = result.reduce((previousValue, currentValue) => {
+          return previousValue + currentValue
+        })
+      }
+      return result
+    }
+  },
   methods: {
+    increment(index) {
+      this.INCREMENT_CART_ITEM(index)
+    },
+    decrement(index) {
+      this.DECREMENT_CART_ITEM(index)
+    },
     ...mapActions([
-      'DELETE_FROM_CART'
+      'DELETE_FROM_CART',
+      'INCREMENT_CART_ITEM',
+      'DECREMENT_CART_ITEM'
     ]),
     deleteFromCart(index) {
       this.DELETE_FROM_CART(index)
@@ -53,6 +82,10 @@ export default {
     gap: 20px;
     display: flex;
     flex-direction: column;
+  }
+  &__total {
+    padding: 15px;
+    background: #b3b3da;
   }
 }
 </style>

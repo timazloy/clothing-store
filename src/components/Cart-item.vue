@@ -6,7 +6,12 @@
       <p>{{cart_item_data.price}}</p>
       <p>{{cart_item_data.article}}</p>
     </div>
-    <div class="cart-item__quantity">{{cart_item_data.quantity}}</div>
+    <div class="cart-item__quantity-wrapper quantity-wrapper">
+      <button @click="decrementItem" class="quantity-wrapper__button">-</button>
+      <div class="cart-item__quantity">{{cart_item_data.quantity}}</div>
+      <button @click="incrementItem" class="quantity-wrapper__button">+</button>
+    </div>
+
     <button
         @click="deleteFromCart" >Delete</button>
   </div>
@@ -26,6 +31,12 @@ export default {
   methods: {
     deleteFromCart(){
       this.$emit('deleteFromCart')
+    },
+    incrementItem() {
+      this.$emit('increment')
+    },
+    decrementItem() {
+      this.$emit('decrement')
     }
   },
   mounted() {
@@ -45,6 +56,21 @@ export default {
 
     &__img {
       width: 100px;
+    }
+
+    &__quantity-wrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  .quantity-wrapper {
+    &__button {
+      background: none;
+      border: none;
+      font-size: 21px;
+      cursor: pointer;
     }
   }
 </style>
