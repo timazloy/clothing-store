@@ -37,9 +37,14 @@ export default {
 <style lang="scss">
   .cart-item {
     display: flex;
-    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 0 8px 0 #e0e0e0;
+    padding: 16px;
+
+    &__img {
+      width: 100px;
+    }
   }
 </style>

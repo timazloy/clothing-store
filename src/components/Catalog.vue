@@ -4,12 +4,14 @@
       <div class="catalog-items__link">Cart: {{CART.length}}</div>
     </router-link>
     <h1>Catalog</h1>
-    <CatalogItem
-      v-for="product in PRODUCTS"
-      :key="product.article"
-      :product_data="product"
-      @addToCart="addToCart"
-    />
+    <div class="catalog-items__wrapper">
+      <CatalogItem
+          v-for="product in PRODUCTS"
+          :key="product.article"
+          :product_data="product"
+          @addToCart="addToCart"
+      />
+    </div>
   </div>
 
 </template>
@@ -51,11 +53,22 @@ export default {
 
 <style lang="scss">
 .catalog-items {
-  display: flex;
-  gap: 20px;
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
 
   &__link {
-
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border: 1px solid black;
   }
 }
 
