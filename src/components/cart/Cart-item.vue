@@ -1,6 +1,6 @@
 <template>
   <div class="cart-item">
-    <img :src="require('../assets/images/' + cart_item_data.image) " class="cart-item__img" alt="image">
+    <img :src="require('../../assets/images/' + cart_item_data.image) " class="cart-item__img" alt="image">
     <div class="cart-item__info">
       <p>{{cart_item_data.name}}</p>
       <p>{{cart_item_data.price}}</p>
