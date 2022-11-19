@@ -5,7 +5,7 @@
     </router-link>
     <h1>Catalog</h1>
     <Select
-        :options="options"
+        :categories="categories"
         @select="optionSelect"
         :selected="selected"
     />
@@ -15,7 +15,7 @@
     </p>
     <div class="catalog-items__wrapper">
       <CatalogItem
-          v-for="product in PRODUCTS"
+          v-for="product in filterProducts"
           :key="product.article"
           :product_data="product"
           @addToCart="addToCart"
@@ -38,14 +38,14 @@ export default {
   },
   data() {
     return {
-      options: [
-        {name: 'Option 1', value: 1},
-        {name: 'Option 2', value: 2},
-        {name: 'Option 3', value: 3},
-        {name: 'Option 4', value: 4},
-        {name: 'Option 5', value: 5}
+      categories: [
+        {name: 'Все', value: 'all'},
+        {name: 'Мужские', value: 'male'},
+        {name: 'Женские', value: 'female'},
+
       ],
-      selected: 'Select'
+      selected: 'Все',
+      sortedProducts: []
     }
   },
   computed: {
@@ -53,6 +53,13 @@ export default {
         'PRODUCTS',
         'CART'
     ]),
+    filterProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts
+      } else {
+        return this.PRODUCTS
+      }
+    }
   },
   methods: {
     ...mapActions([
@@ -62,9 +69,16 @@ export default {
     addToCart(data) {
       this.ADD_TO_CART(data)
     },
-    optionSelect(option) {
-      console.log(option)
-      this.selected = option.name
+    optionSelect(category) {
+      this.selected = category.name
+      this.sortedProducts = [];
+
+      let self = this;
+      this.PRODUCTS.map(item => {
+        if (item.category === category.name) {
+          self.sortedProducts.push(item);
+        }
+      })
     }
   },
   mounted() {

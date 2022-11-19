@@ -6,7 +6,7 @@
         v-if="areOptionsVisible"
     >
       <p
-        v-for="option in options"
+        v-for="option in categories"
         :key="option.value"
         @click="selectOption(option)"
       >
@@ -20,7 +20,7 @@
 export default {
   name: "v-Select",
   props: {
-    options: {
+    categories: {
       type: Array,
       default() {
         return []
