@@ -9,10 +9,6 @@
         @select="optionSelect"
         :selected="selected"
     />
-    <p>
-      Selected option:
-      {{selected}}
-    </p>
     <div class="catalog-items__wrapper">
       <CatalogItem
           v-for="product in filterProducts"
