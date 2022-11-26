@@ -8,7 +8,7 @@
 
       <div
           class="custom-select__options"
-          v-if="areOptionsVisible || isExpanded"
+          v-if="areOptionsVisible"
       >
         <button
             class="custom-select__button"

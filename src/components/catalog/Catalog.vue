@@ -4,12 +4,36 @@
       <div class="catalog-items__link">Cart: {{CART.length}}</div>
     </router-link>
     <h1>Catalog</h1>
-    <Select
-        :categories="categories"
-        @select="optionSelect"
-        :selected="selected"
-        :isExpanded="IS_DESKTOP"
-    />
+    <div class="filter">
+      <Select
+          :categories="categories"
+          @select="optionSelect"
+          :selected="selected"
+          :isExpanded="IS_DESKTOP"
+      />
+      <div class="range-slider">
+        <input
+            type="range"
+            min="0"
+            max="8700"
+            step="100"
+            v-model.number="minPrice"
+            @change="setRangeSlider"
+        >
+        <input
+            type="range"
+            min="0"
+            max="8700"
+            step="100"
+            v-model.number="maxPrice"
+            @change="setRangeSlider"
+        >
+      </div>
+      <div class="range-values">
+        <p>Min: {{minPrice}}</p>
+        <p>Max: {{maxPrice}}</p>
+      </div>
+    </div>
     <div class="catalog-items__wrapper">
       <CatalogItem
           v-for="product in filterProducts"
@@ -42,7 +66,9 @@ export default {
 
       ],
       selected: 'Все',
-      sortedProducts: []
+      sortedProducts: [],
+      minPrice: 0,
+      maxPrice: 8700
     }
   },
   computed: {
@@ -65,6 +91,13 @@ export default {
       'GET_PRODUCTS_FROM_API',
       'ADD_TO_CART'
     ]),
+    setRangeSlider() {
+      if (this.minPrice > this.maxPrice) {
+        let temp = this.maxPrice
+        this.maxPrice = this.minPrice;
+        this.minPrice = temp
+      }
+    },
     addToCart(data) {
       this.ADD_TO_CART(data)
     },
@@ -107,5 +140,21 @@ export default {
   }
 }
 
-
+.range-slider {
+  width: 200px;
+  margin: auto 16px;
+  text-align: center;
+  position: relative;
+}
+.range-slider svg, .range-slider input[type=range] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+  z-index: 2;
+  position: relative;
+  top: 2px;
+  margin-top: -7px;
+}
 </style>
