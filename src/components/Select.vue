@@ -8,7 +8,7 @@
 
       <div
           class="custom-select__options"
-          v-if="areOptionsVisible"
+          v-if="areOptionsVisible || isExpanded"
       >
         <button
             class="custom-select__button"
@@ -39,6 +39,12 @@ export default {
       type: String,
       default() {
         return ''
+      }
+    },
+    isExpanded: {
+      type: Boolean,
+      default() {
+        return false
       }
     }
   },

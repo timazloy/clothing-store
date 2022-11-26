@@ -8,6 +8,7 @@
         :categories="categories"
         @select="optionSelect"
         :selected="selected"
+        :isExpanded="IS_DESKTOP"
     />
     <div class="catalog-items__wrapper">
       <CatalogItem
@@ -47,7 +48,9 @@ export default {
   computed: {
     ...mapGetters([
         'PRODUCTS',
-        'CART'
+        'CART',
+        'IS_MOBILE',
+        'IS_DESKTOP'
     ]),
     filterProducts() {
       if (this.sortedProducts.length) {
