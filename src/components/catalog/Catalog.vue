@@ -7,7 +7,7 @@
     <div class="filter">
       <Select
           :categories="categories"
-          @select="optionSelect"
+          @select="sortByCategories"
           :selected="selected"
           :isExpanded="IS_DESKTOP"
       />
@@ -97,24 +97,27 @@ export default {
         this.maxPrice = this.minPrice;
         this.minPrice = temp
       }
+      this.sortByCategories()
     },
     addToCart(data) {
       this.ADD_TO_CART(data)
     },
-    optionSelect(category) {
-      this.selected = category.name
-      this.sortedProducts = [];
-
-      let self = this;
-      this.PRODUCTS.map(item => {
-        if (item.category === category.name) {
-          self.sortedProducts.push(item);
-        }
+    sortByCategories(category) {
+      this.sortedProducts = [...this.PRODUCTS]
+      this.sortedProducts = this.sortedProducts.filter((item) => {
+        return item.price >= this.minPrice && item.price <= this.maxPrice
       })
+      if (category) {
+        this.sortedProducts = this.sortedProducts.filter((e) => {
+          this.selected === category.name
+          return e.category === category.name
+        })
+      }
     }
   },
   mounted() {
     this.GET_PRODUCTS_FROM_API()
+    this.sortByCategories()
   }
 }
 </script>
