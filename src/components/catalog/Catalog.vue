@@ -109,7 +109,7 @@ export default {
       })
       if (category) {
         this.sortedProducts = this.sortedProducts.filter((e) => {
-          this.selected === category.name
+          this.selected = category.name
           return e.category === category.name
         })
       }

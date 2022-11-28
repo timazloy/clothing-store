@@ -1,8 +1,21 @@
 <template>
   <div class="catalog-item">
+
+    <Popup
+        v-if="isInfoPopupVisible"
+        @closePopup="closePopup"
+    >
+      <div>
+        <p>{{product_data.name}}</p>
+        <img :src="require('/src/assets/images/' + product_data.image) " alt="image">
+        <p>{{product_data.price}} р.</p>
+      </div>
+    </Popup>
+
     <p>{{product_data.name}}</p>
     <img :src="require('/src/assets/images/' + product_data.image) " alt="image">
     <p>{{product_data.price}} р.</p>
+    <button @click="showPopupInfo" type="button">show more</button>
     <button
         type="button"
         class="catalog-item__button"
@@ -12,8 +25,13 @@
 </template>
 
 <script>
+import Popup from "@/components/popup/Popup";
+
 export default {
   name: "Catalog-item",
+  components: {
+    Popup,
+  },
   props: {
     product_data: {
       type: Object,
@@ -23,10 +41,19 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      isInfoPopupVisible: false
+
+    }
   },
   computed: {},
   methods: {
+    showPopupInfo() {
+      this.isInfoPopupVisible = true
+    },
+    closePopup() {
+      this.isInfoPopupVisible = false
+    },
     addToCart() {
       this.$emit('addToCart' ,this.product_data)
     }
