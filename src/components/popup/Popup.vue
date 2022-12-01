@@ -1,7 +1,7 @@
 <template>
   <div class="popup">
     <div class="popup__header">
-      <span>Popup name</span>
+      <span>{{popupTitle}}</span>
       <span>
         <i  @click="closePopup" class="material-icons">close</i>
       </span>
@@ -10,7 +10,7 @@
       <slot></slot>
     </div>
     <div class="popup__footer">
-      <button type="button">add</button>
+      <button type="button">{{rightBtnTitle}}</button>
       <button @click="closePopup" type="button">close</button>
     </div>
   </div>
@@ -23,6 +23,10 @@ export default {
     rightBtnTitle: {
       type: String,
       default: 'Ok'
+    },
+    popupTitle: {
+      type: String,
+      default: 'Popup name'
     }
   },
   methods: {

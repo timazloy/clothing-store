@@ -4,6 +4,8 @@
     <Popup
         v-if="isInfoPopupVisible"
         @closePopup="closePopup"
+        rightBtnTitle="Add to Cart"
+        :popupTitle="product_data.name"
     >
       <div>
         <p>{{product_data.name}}</p>
