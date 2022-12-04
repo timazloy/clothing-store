@@ -71,7 +71,7 @@ export default {
   .popup {
     padding: 20px;
     position: fixed;
-    top: 50px;
+    margin: auto;
     width: 44%;
     background: white;
     border-radius: 5px;

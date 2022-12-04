@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="catalog-item">
     <Popup
         v-if="isInfoPopupVisible"
         @closePopup="closePopup"
@@ -15,22 +15,25 @@
         <div class="popup__description popup-description" v-html="addDescription"></div>
       </template>
     </Popup>
-    <div class="catalog-item">
-
-      <p class="catalog-item__name">{{product_data.name}}</p>
-      <img class="catalog-item__image" :src="require('/src/assets/images/' + product_data.image) " alt="image">
-      <p class="catalog-item__price">Price: {{product_data.price}} р.</p>
-      <button
-          @click="showPopupInfo"
-          type="button"
-          class="catalog-item__button button-show"
-      >show more</button>
-      <button
-          type="button"
-          class="catalog-item__button button-add"
-          @click="addToCart"
-      >Add to Cart</button>
-    </div>
+    <p class="catalog-item__name">{{product_data.name}}</p>
+    <img class="catalog-item__image" :src="require('/src/assets/images/' + product_data.image) " alt="image">
+    <p class="catalog-item__price">Price: {{product_data.price}} р.</p>
+    <button
+        @click="showPopupInfo"
+        type="button"
+        class="catalog-item__button button-show"
+    >show more</button>
+    <button v-if="!addedButton"
+        type="button"
+        class="catalog-item__button button-add"
+        @click="addToCart"
+    >Add to Cart</button>
+    <button v-if="addedButton"
+        style="background: #6cab5d"
+        type="button"
+        class="catalog-item__button button-added"
+        @click="addToCart"
+    >Added to cart</button>
   </div>
 </template>
 
@@ -52,8 +55,8 @@ export default {
   },
   data() {
     return {
-      isInfoPopupVisible: false
-
+      isInfoPopupVisible: false,
+      addedButton: false
     }
   },
   computed: {
@@ -79,6 +82,7 @@ export default {
     },
     addToCart() {
       this.$emit('addToCart' ,this.product_data)
+      this.addedButton = true
     }
   }
 }
@@ -91,13 +95,10 @@ export default {
     padding: 16px;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
+    max-width: 211px;
 
     &:hover {
       box-shadow: 1px 0px 12px #666161;
-    }
-
-    &__button {
-      width: 100%;
     }
 
     &__wrapper-popup {
@@ -121,6 +122,10 @@ export default {
     }
 
     &__button {
+      width: 100%;
+    }
+
+    &__button:not(:last-child) {
       margin-bottom: 10px;
     }
 
@@ -141,6 +146,16 @@ export default {
     &:hover {
       background: #7676ed;
     }
+  }
+
+  .button-added {
+    border: none;
+    background: #6cab5d;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    pointer-events: none;
   }
 
   .button-show {
