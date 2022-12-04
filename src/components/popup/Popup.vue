@@ -1,19 +1,25 @@
 <template>
-  <div class="popup">
-    <div class="popup__header">
-      <span>{{popupTitle}}</span>
-      <span>
-        <i  @click="closePopup" class="material-icons">close</i>
-      </span>
-    </div>
-    <div class="popup__content">
-      <slot></slot>
-    </div>
-    <div class="popup__footer">
-      <button type="button">{{rightBtnTitle}}</button>
-      <button @click="closePopup" type="button">close</button>
+  <div class="catalog-item__wrapper-popup" ref="popup_wrapper">
+    <div class="popup">
+      <div class="popup__header popup-header">
+        <h2>{{popupTitle}}</h2>
+        <button type="button" class="popup-header__button">
+          <i  @click="closePopup" class="material-icons">close</i>
+        </button>
+      </div>
+      <div class="popup__content">
+        <slot></slot>
+      </div>
+      <div class="popup__footer">
+        <button
+            class="popup__button button-add"
+            type="button"
+            @click="rightButtonAction"
+        >{{rightBtnTitle}}</button>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -32,19 +38,46 @@ export default {
   methods: {
     closePopup() {
       this.$emit('closePopup')
+    },
+    rightButtonAction() {
+      this.$emit('rightButtonAction')
     }
+  },
+  mounted() {
+    document.addEventListener('click', (item) => {
+      if (item.target === this.$refs['popup_wrapper']) {
+        this.closePopup()
+      }
+    })
   }
 }
 </script>
 
 <style lang="scss">
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+  }
+
   .popup {
-    padding: 16px;
+    padding: 20px;
     position: fixed;
     top: 50px;
-    right: 0;
-    left: 0;
-    width: 400px;
+    width: 44%;
+    background: white;
+    border-radius: 5px;
+    z-index: 2;
+
+
 
     &__header, &__footer {
       display: flex;
@@ -52,11 +85,21 @@ export default {
       align-items: center;
     }
 
-    &__content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    &__header {
+      margin-bottom: 20px;
     }
 
+    &__content {
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    &__button {
+      width: fit-content;
+    }
   }
 </style>

@@ -127,6 +127,7 @@ export default {
 
   &__wrapper {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 40px;
@@ -155,7 +156,6 @@ export default {
   bottom: 0;
 }
 input[type=range]::-webkit-slider-thumb {
-  z-index: 2;
   position: relative;
   top: 2px;
   margin-top: -7px;
