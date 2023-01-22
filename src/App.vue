@@ -49,8 +49,7 @@ export default {
   margin-top: 60px;
 }
 body {
-  background-image: url("/src/assets/images/background-main.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: linear-gradient(#9191c9, #60474b);
+  min-height:100vh
 }
 </style>

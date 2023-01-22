@@ -7,11 +7,12 @@
         rightBtnTitle="Add to Cart"
         :popupTitle="product_data.name"
         :addedButton="addedButton"
+        :price="product_data.price"
     >
       <template>
         <div>
           <img :src="require('/src/assets/images/' + product_data.image)" class="popup__image" alt="image">
-          <p>{{product_data.price}} р.</p>
+<!--          <p>{{product_data.price}} р.</p>-->
         </div>
         <div class="popup__description popup-description" v-html="addDescription"></div>
       </template>

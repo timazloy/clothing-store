@@ -97,6 +97,7 @@ export default {
     max-width: 200px;
     width: 100%;
     background: white;
+    border-radius: 10px;
   }
 }
 </style>

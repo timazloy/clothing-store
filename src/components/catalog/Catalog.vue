@@ -148,8 +148,10 @@ a {
     padding: 15px;
     border: 1px solid black;
     margin-left: auto;
-    width: fit-content;
+    max-width: 145px;
+    width: 100%;
     display: flex;
+    justify-content: center;
     background: white;
     border-radius: 10px;
   }

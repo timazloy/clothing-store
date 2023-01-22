@@ -16,7 +16,7 @@
             class="popup__button button-add"
             type="button"
             @click="rightButtonAction"
-        >{{rightBtnTitle}}</button>
+        >{{rightBtnTitle}} ({{price}} р.)</button>
         <button v-else
                 type="button"
                 class="catalog-item__button button-added button-added--small"
@@ -44,6 +44,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    price: {
+      type: Number,
+      default: 0,
+    }
   },
   methods: {
     closePopup() {
