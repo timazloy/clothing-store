@@ -6,18 +6,21 @@
         @rightButtonAction="addToCart"
         rightBtnTitle="Add to Cart"
         :popupTitle="product_data.name"
+        :addedButton="addedButton"
     >
       <template>
         <div>
-          <img :src="require('/src/assets/images/' + product_data.image) " alt="image">
+          <img :src="require('/src/assets/images/' + product_data.image)" class="popup__image" alt="image">
           <p>{{product_data.price}} р.</p>
         </div>
         <div class="popup__description popup-description" v-html="addDescription"></div>
       </template>
     </Popup>
-    <p class="catalog-item__name">{{product_data.name}}</p>
-    <img class="catalog-item__image" :src="require('/src/assets/images/' + product_data.image) " alt="image">
-    <p class="catalog-item__price">Price: {{product_data.price}} р.</p>
+    <p class="catalog-item__title">{{product_data.name}}</p>
+    <div class="catalog-item__cover">
+      <img class="catalog-item__image" :src="require('/src/assets/images/' + product_data.image) " alt="image">
+    </div>
+    <p class="catalog-item__text">Price: {{product_data.price}} р.</p>
     <button
         @click="showPopupInfo"
         type="button"
@@ -29,7 +32,6 @@
         @click="addToCart"
     >Add to Cart</button>
     <button v-if="addedButton"
-        style="background: #6cab5d"
         type="button"
         class="catalog-item__button button-added"
         @click="addToCart"
@@ -90,12 +92,13 @@ export default {
 
 <style lang="scss">
   .catalog-item {
-    flex-basis: 25%;
     box-shadow: 0 0 8px 0 #e0e0e0;
     padding: 16px;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
-    max-width: 211px;
+    max-width: 179px;
+    width: 100%;
+    background: white;
 
     &:hover {
       box-shadow: 1px 0px 12px #666161;
@@ -113,11 +116,12 @@ export default {
       background: rgb(50, 44, 44, 0.4);
     }
 
-    &__name {
+    &__title {
       margin-bottom: 10px;
+      font-weight: 600;
     }
 
-    &__price {
+    &__text {
       margin: 10px 0;
     }
 
@@ -129,8 +133,16 @@ export default {
       margin-bottom: 10px;
     }
 
+    &__cover {
+      width: 100%;
+      max-width: 180px;
+      height: 250px;
+    }
+
     &__image {
-      height: 200px;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
 
@@ -156,6 +168,10 @@ export default {
     border-radius: 5px;
     transition: 0.3s ease-in-out;
     pointer-events: none;
+
+    &--small {
+      width: fit-content;
+    }
   }
 
   .button-show {
@@ -174,6 +190,12 @@ export default {
       //display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
+    }
+  }
+
+  .popup {
+    &__image {
+      max-width: 220px;
     }
   }
 

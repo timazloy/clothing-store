@@ -1,8 +1,8 @@
 <template>
   <div class="catalog-items">
     <h1>Catalog</h1>
-    <router-link :to="{name: 'cart', params: {cart_data: CART}}">
-      <div class="catalog-items__link">Cart: {{CART.length}}</div>
+    <router-link  class="catalog-items__link" :to="{name: 'cart', params: {cart_data: CART}}">
+      <div >Cart: {{CART.length}}</div>
     </router-link>
     <div class="filter">
       <Select
@@ -127,6 +127,10 @@ a {
   text-decoration: none;
 }
 
+.filter {
+  display: flex;
+}
+
 .catalog-items {
   max-width: 715px;
 
@@ -146,11 +150,13 @@ a {
     margin-left: auto;
     width: fit-content;
     display: flex;
+    background: white;
+    border-radius: 10px;
   }
 }
 
 .range-slider {
-  width: 200px;
+  width: 140px;
   margin: auto 16px;
   text-align: center;
   position: relative;
@@ -168,8 +174,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .range-values {
   display: flex;
-  flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
+  align-items: center;
 }
 </style>

@@ -37,7 +37,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 900px;
+  max-width: 715px;
   margin: 0 auto;
 }
 

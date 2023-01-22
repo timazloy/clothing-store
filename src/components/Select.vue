@@ -74,6 +74,8 @@ export default {
 }
 
 .custom-select {
+  width: 100%;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   position: relative;

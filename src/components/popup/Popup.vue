@@ -12,10 +12,16 @@
       </div>
       <div class="popup__footer">
         <button
+            v-if="!addedButton"
             class="popup__button button-add"
             type="button"
             @click="rightButtonAction"
         >{{rightBtnTitle}}</button>
+        <button v-else
+                type="button"
+                class="catalog-item__button button-added button-added--small"
+        >Added to cart</button>
+
       </div>
     </div>
   </div>
@@ -33,7 +39,11 @@ export default {
     popupTitle: {
       type: String,
       default: 'Popup name'
-    }
+    },
+    addedButton: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     closePopup() {

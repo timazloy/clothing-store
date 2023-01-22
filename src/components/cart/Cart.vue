@@ -1,9 +1,10 @@
 <template>
   <div class="cart">
+    <h1>Cart</h1>
     <router-link :to="{name: 'catalog'}">
       <div class="catalog-items__link">Back to Catalog</div>
     </router-link>
-    <h1>Cart</h1>
+
     <div class="cart__wrapper">
       <p v-if="!cart_data.length">There are no products in cart...</p>
       <CartItem
@@ -82,6 +83,7 @@ export default {
     gap: 20px;
     display: flex;
     flex-direction: column;
+    margin-top: 15px;
   }
   &__total {
     padding: 15px;

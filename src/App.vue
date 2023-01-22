@@ -48,4 +48,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+body {
+  background-image: url("/src/assets/images/background-main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 </style>
