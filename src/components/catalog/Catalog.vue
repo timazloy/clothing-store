@@ -11,28 +11,14 @@
           :selected="selected"
           :isExpanded="IS_DESKTOP"
       />
-      <div class="range-slider">
-        <input
-            type="range"
-            min="0"
-            max="8700"
-            step="100"
-            v-model.number="minPrice"
-            @change="setRangeSlider"
-        >
-        <input
-            type="range"
-            min="0"
-            max="8700"
-            step="100"
-            v-model.number="maxPrice"
-            @change="setRangeSlider"
-        >
-      </div>
-      <div class="range-values">
-        <p>Min: {{minPrice}}</p>
-        <p>Max: {{maxPrice}}</p>
-      </div>
+
+      <Select
+          :categories="categoriesPrice"
+          @select="sortByPrice"
+          :selected="selectedPrice"
+          :isExpanded="IS_DESKTOP"
+      />
+
     </div>
     <div class="catalog-items__wrapper">
       <CatalogItem
@@ -63,9 +49,14 @@ export default {
         {name: 'Все', value: 'all'},
         {name: 'Мужские', value: 'male'},
         {name: 'Женские', value: 'female'},
-
+      ],
+      categoriesPrice: [
+        {name: 'Сортировка по цене', value: 'all'},
+        {name: 'Цена по возрастанию', value: 'more'},
+        {name: 'Цена по убыванию', value: 'less'},
       ],
       selected: 'Все',
+      selectedPrice: 'Сортировка по цене',
       sortedProducts: [],
       minPrice: 0,
       maxPrice: 8700
@@ -104,15 +95,34 @@ export default {
     },
     sortByCategories(category) {
       this.sortedProducts = [...this.PRODUCTS]
-      this.sortedProducts = this.sortedProducts.filter((item) => {
-        return item.price >= this.minPrice && item.price <= this.maxPrice
-      })
+
       if (category) {
         this.sortedProducts = this.sortedProducts.filter((e) => {
           this.selected = category.name
           return e.category === category.name
         })
       }
+    },
+    sortByPrice(option) {
+      this.sortedProducts = [...this.PRODUCTS]
+
+      // this.sortedProducts.sort((a, b) => {
+      //   return b.price - a.price
+      //   // return item.price >= this.minPrice && item.price <= this.maxPrice
+      // })
+
+      if (option.value === 'more') this.sortedProducts.sort(( a, b ) => a.price - b.price);
+      else if (option.value === 'less') this.sortedProducts.sort(( a, b ) => b.price - a.price);
+      else this.sortedProducts = [...this.PRODUCTS]
+
+      console.log(option.value)
+
+      // if (category) {
+      //   this.sortedProducts = this.sortedProducts.filter((e) => {
+      //     this.selectedPrice = category.name
+      //     return e.category === category.name
+      //   })
+      // }
     }
   },
   mounted() {
@@ -129,6 +139,7 @@ a {
 
 .filter {
   display: flex;
+  gap: 20px;
 }
 
 .catalog-items {

@@ -2,7 +2,7 @@
   <div class="main-wrapper__custom-select custom-select">
     <button
         type="button"
-        class="custom-select__button"
+        class="custom-select__button custom-button"
         @click="areOptionsVisible = !areOptionsVisible"
     >{{selected}}</button>
 
@@ -11,7 +11,7 @@
           v-if="areOptionsVisible"
       >
         <button
-            class="custom-select__button"
+            class="custom-select__button custom-button"
             type="button"
             v-for="option in categories"
             :key="option.value"
@@ -89,15 +89,17 @@ export default {
     position: absolute;
   }
 
-  &__button {
-    background: no-repeat;
-    border: 1px solid black;
-    cursor: pointer;
-    padding: 10px 20px;
-    max-width: 200px;
-    width: 100%;
-    background: white;
-    border-radius: 10px;
-  }
+}
+
+.custom-button {
+  background: no-repeat;
+  border: 1px solid black;
+  height: fit-content;
+  cursor: pointer;
+  padding: 10px 20px;
+  max-width: 200px;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
 }
 </style>
