@@ -82,20 +82,21 @@ export default {
       'GET_PRODUCTS_FROM_API',
       'ADD_TO_CART'
     ]),
-    setRangeSlider() {
-      if (this.minPrice > this.maxPrice) {
-        let temp = this.maxPrice
-        this.maxPrice = this.minPrice;
-        this.minPrice = temp
-      }
-      this.sortByCategories()
-    },
+    // setRangeSlider() {
+    //   if (this.minPrice > this.maxPrice) {
+    //     let temp = this.maxPrice
+    //     this.maxPrice = this.minPrice;
+    //     this.minPrice = temp
+    //   }
+    //   this.sortByCategories()
+    // },
     addToCart(data) {
       this.ADD_TO_CART(data)
     },
     sortByCategories(category) {
       this.sortedProducts = [...this.PRODUCTS]
 
+      this.selected = category.name
       if (category) {
         this.sortedProducts = this.sortedProducts.filter((e) => {
           this.selected = category.name
@@ -106,23 +107,11 @@ export default {
     sortByPrice(option) {
       this.sortedProducts = [...this.PRODUCTS]
 
-      // this.sortedProducts.sort((a, b) => {
-      //   return b.price - a.price
-      //   // return item.price >= this.minPrice && item.price <= this.maxPrice
-      // })
-
       if (option.value === 'more') this.sortedProducts.sort(( a, b ) => a.price - b.price);
       else if (option.value === 'less') this.sortedProducts.sort(( a, b ) => b.price - a.price);
       else this.sortedProducts = [...this.PRODUCTS]
 
-      console.log(option.value)
-
-      // if (category) {
-      //   this.sortedProducts = this.sortedProducts.filter((e) => {
-      //     this.selectedPrice = category.name
-      //     return e.category === category.name
-      //   })
-      // }
+      this.selectedPrice = option.name
     }
   },
   mounted() {
