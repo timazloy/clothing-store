@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-items">
-    <h1>Catalog</h1>
+    <h1 class="catalog-items__title">Catalog</h1>
     <router-link  class="catalog-items__link" :to="{name: 'cart', params: {cart_data: CART}}">
       <div >Cart: {{CART.length}}</div>
     </router-link>
@@ -135,11 +135,20 @@ a {
 
 .filter {
   display: flex;
-  gap: 20px;
+  gap: 40px;
+
+  @media (max-width: 728px) {
+    max-width: 462px;
+    margin: 0 auto;
+  }
 }
 
 .catalog-items {
   max-width: 715px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
 
   &__wrapper {
     display: flex;
@@ -161,6 +170,12 @@ a {
     justify-content: center;
     background: white;
     border-radius: 10px;
+    margin-bottom: 15px;
+    
+    @media (max-width: 400px) {
+      max-width: none;
+      width: auto;
+    }
   }
 }
 

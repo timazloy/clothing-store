@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <h1>Cart</h1>
+    <h1 class="cart__title">Cart</h1>
     <router-link :to="{name: 'catalog'}">
       <div class="catalog-items__link">Back to Catalog</div>
     </router-link>
@@ -78,6 +78,10 @@ export default {
 <style lang="scss">
 .cart {
   width: 100%;
+
+  &__title {
+    margin-bottom: 20px;
+  }
 
   &__wrapper {
     gap: 20px;

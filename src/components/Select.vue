@@ -75,7 +75,7 @@ export default {
 
 .custom-select {
   width: 100%;
-  max-width: 200px;
+  max-width: 211px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -83,7 +83,7 @@ export default {
   &__options {
     display: flex;
     flex-direction: column;
-    max-width: 200px;
+    max-width: 211px;
     width: 100%;
     top: 37px;
     position: absolute;
@@ -94,12 +94,11 @@ export default {
 .custom-button {
   background: no-repeat;
   border: 1px solid black;
-  height: fit-content;
   cursor: pointer;
   padding: 10px 20px;
-  max-width: 200px;
   width: 100%;
   background: white;
   border-radius: 10px;
+  height: 100%;
 }
 </style>
