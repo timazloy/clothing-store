@@ -105,13 +105,20 @@ export default {
       }
     },
     sortByPrice(option) {
-      this.sortedProducts = [...this.PRODUCTS]
+      if (this.sortedProducts.length === 0) {
+        this.sortedProducts = [...this.PRODUCTS]
+        if (option.value === 'more') this.sortedProducts.sort(( a, b ) => a.price - b.price);
+        else if (option.value === 'less') this.sortedProducts.sort(( a, b ) => b.price - a.price);
+        else this.sortedProducts = [...this.PRODUCTS]
 
-      if (option.value === 'more') this.sortedProducts.sort(( a, b ) => a.price - b.price);
-      else if (option.value === 'less') this.sortedProducts.sort(( a, b ) => b.price - a.price);
-      else this.sortedProducts = [...this.PRODUCTS]
+        this.selectedPrice = option.name
+      } else {
+        if (option.value === 'more') this.sortedProducts.sort(( a, b ) => a.price - b.price);
+        else if (option.value === 'less') this.sortedProducts.sort(( a, b ) => b.price - a.price);
+        else this.sortedProducts = [...this.PRODUCTS]
 
-      this.selectedPrice = option.name
+        this.selectedPrice = option.name
+      }
     }
   },
   mounted() {
