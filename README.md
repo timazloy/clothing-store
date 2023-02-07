@@ -1,24 +1,31 @@
-# vue2_shop
+# Clothing-store
 
-## Project setup
+## Как запустить
 ```
+версия node 18.12.0
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Используемые технологии:
 ```
-npm run build
+- Vue 2
+- Vuex
+- Vue router
+- SCSS
+- axios
 ```
 
-### Lints and fixes files
+### Функционал:
 ```
-npm run lint
+- Добавление товара в корзину
+- открытие модального окна (кнопка show more)
+- сортировка одежды по полу
+- сортировка одежды по цене
+- увеличение товаров в корзине
+- удаление товара из корзины
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Описание:
+```
+Простой интернет магазин, мой первый проект на Vue.
+```
